@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Recuperación de datos profesional en Venezuela. Diagnóstico en 24–48h. Más de 1.000 unidades recuperadas. Laboratorio certificado en Caracas.">
+<title>Compucarvi — Recuperación de Datos Venezuela</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --azul:#003366;
+  --azul-m:#0077CC;
+  --azul-l:#E8F4FF;
+  --naranja:#E8600A;
+  --naranja-l:#FFF3EB;
+  --blanco:#FFFFFF;
+  --gris-f:#F4F6FA;
+  --gris-t:#6B7280;
+  --gris-b:#E5E7EB;
+  --negro:#0A0F1E;
+  --verde:#059669;
+  --verde-l:#ECFDF5;
+  --sombra:0 4px 24px rgba(0,51,102,.10);
+  --sombra-f:0 8px 40px rgba(0,51,102,.18);
+  --r:14px;
+  --r-sm:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--blanco);color:var(--negro);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* ===================== UTILITY ===================== */
+.container{max-width:1080px;margin:0 auto;padding:0 20px;}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:99px;}
+.tag-azul{background:var(--azul-l);color:var(--azul);}
+.tag-naranja{background:var(--naranja-l);color:var(--naranja);}
+.tag-verde{background:var(--verde-l);color:var(--verde);}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:16px;padding:16px 32px;border-radius:99px;border:none;cursor:pointer;transition:all .2s;text-decoration:none;white-space:nowrap;}
+.btn-primary{background:var(--naranja);color:var(--blanco);box-shadow:0 4px 20px rgba(232,96,10,.35);}
+.btn-primary:hover{background:#C4510A;transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,96,10,.45);}
+.btn-outline{background:transparent;color:var(--azul);border:2px solid var(--azul);}
+.btn-outline:hover{background:var(--azul);color:var(--blanco);}
+.btn-wa{background:#25D366;color:var(--blanco);box-shadow:0 4px 20px rgba(37,211,102,.35);}
+.btn-wa:hover{background:#1EAF56;transform:translateY(-2px);}
+.btn-lg{font-size:18px;padding:20px 40px;}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:800;line-height:1.15;color:var(--azul);}
+.section-sub{font-size:17px;color:var(--gris-t);line-height:1.7;margin-top:12px;}
+
+/* ===================== NAV ===================== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 0;transition:all .3s;}
+.nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);box-shadow:var(--sombra);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:var(--azul);}
+.nav-logo-text span{color:var(--naranja);}
+.nav-cta{display:none;}
+@media(min-width:640px){.nav-cta{display:inline-flex;padding:10px 22px;font-size:14px;}}
+
+/* ===================== HERO ===================== */
+.hero{min-height:100vh;background:linear-gradient(135deg,var(--azul) 0%,#00234A 60%,#001830 100%);position:relative;overflow:hidden;display:flex;align-items:center;padding:100px 0 60px;}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230077CC' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+.hero::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:80px;background:var(--blanco);clip-path:ellipse(55% 100% at 50% 100%);}
+.hero-inner{display:grid;grid-template-columns:1fr;gap:40px;position:relative;z-index:1;}
+@media(min-width:768px){.hero-inner{grid-template-columns:1fr 1fr;align-items:center;}}
+.hero-badge{margin-bottom:20px;}
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(34px,5vw,58px);font-weight:800;color:var(--blanco);line-height:1.1;margin-bottom:20px;}
+.hero-title span{color:var(--naranja);}
+.hero-sub{font-size:17px;color:rgba(255,255,255,.80);line-height:1.7;margin-bottom:32px;max-width:520px;}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px;}
+.hero-trust{display:flex;flex-wrap:wrap;gap:20px;}
+.trust-item{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);font-size:14px;}
+.trust-icon{width:32px;height:32px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.hero-visual{display:flex;justify-content:center;align-items:center;}
+.hero-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:32px;text-align:center;max-width:340px;width:100%;}
+.hero-avatar{width:120px;height:120px;border-radius:50%;border:3px solid var(--naranja);margin:0 auto 16px;overflow:hidden;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;}
+.hero-avatar img{width:100%;height:100%;object-fit:cover;}
+.hero-avatar-placeholder{font-size:48px;}
+.hero-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--blanco);margin-bottom:4px;}
+.hero-role{font-size:13px;color:rgba(255,255,255,.65);margin-bottom:20px;}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.stat{background:rgba(255,255,255,.08);border-radius:12px;padding:14px 10px;text-align:center;}
+.stat-num{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--naranja);}
+.stat-label{font-size:11px;color:rgba(255,255,255,.65);margin-top:2px;line-height:1.3;}
+
+/* ===================== TRUST BAR ===================== */
+.trustbar{background:var(--azul);padding:18px 0;}
+.trustbar-inner{display:flex;flex-wrap:wrap;justify-content:center;gap:24px 40px;}
+.tbar-item{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.85);font-size:13px;font-weight:500;}
+.tbar-dot{width:6px;height:6px;background:var(--naranja);border-radius:50%;flex-shrink:0;}
+
+/* ===================== PROBLEMA ===================== */
+.problema{padding:80px 0;}
+.problema-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:40px;}
+@media(min-width:640px){.problema-grid{grid-template-columns:repeat(3,1fr);}}
+.problema-card{background:var(--gris-f);border-radius:var(--r);padding:28px 24px;border:1px solid var(--gris-b);transition:all .25s;position:relative;overflow:hidden;}
+.problema-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--naranja);transform:scaleX(0);transition:transform .25s;transform-origin:left;}
+.problema-card:hover{box-shadow:var(--sombra-f);transform:translateY(-4px);}
+.problema-card:hover::before{transform:scaleX(1);}
+.problema-icon{font-size:36px;margin-bottom:16px;}
+.problema-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--azul);margin-bottom:8px;}
+.problema-text{font-size:14px;color:var(--gris-t);line-height:1.65;}
+
+/* ===================== SERVICIOS ===================== */
+.servicios{padding:80px 0;background:var(--gris-f);}
+.servicios-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:48px;}
+@media(min-width:768px){.servicios-grid{grid-template-columns:repeat(2,1fr);}}
+.servicio-card{background:var(--blanco);border-radius:var(--r);overflow:hidden;border:1px solid var(--gris-b);box-shadow:var(--sombra);transition:all .25s;}
+.servicio-card:hover{transform:translateY(-6px);box-shadow:var(--sombra-f);}
+.servicio-card.featured{border:2px solid var(--naranja);}
+.servicio-header{padding:28px 28px 20px;border-bottom:1px solid var(--gris-b);}
+.servicio-badge{margin-bottom:14px;}
+.servicio-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--azul);margin-bottom:6px;}
+.servicio-sub{font-size:14px;color:var(--gris-t);}
+.servicio-body{padding:24px 28px;}
+.servicio-precio{display:flex;align-items:baseline;gap:6px;margin-bottom:6px;}
+.precio-desde{font-size:13px;color:var(--gris-t);}
+.precio-num{font-family:'Syne',sans-serif;font-size:38px;font-weight:800;color:var(--azul);}
+.precio-usd{font-size:16px;font-weight:600;color:var(--gris-t);}
+.precio-nota{font-size:12px;color:var(--gris-t);margin-bottom:20px;padding:8px 12px;background:var(--gris-f);border-radius:var(--r-sm);}
+.servicio-lista{list-style:none;margin-bottom:24px;}
+.servicio-lista li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--gris-t);padding:6px 0;border-bottom:1px solid var(--gris-b);}
+.servicio-lista li:last-child{border-bottom:none;}
+.li-check{color:var(--verde);font-size:16px;flex-shrink:0;margin-top:1px;}
+.servicio-tiempo{display:flex;align-items:center;gap:8px;background:var(--azul-l);border-radius:var(--r-sm);padding:10px 14px;font-size:13px;color:var(--azul);font-weight:600;margin-bottom:20px;}
+
+/* SERVICIO FULL WIDTH */
+.servicio-full{background:var(--blanco);border-radius:var(--r);border:1px solid var(--gris-b);box-shadow:var(--sombra);overflow:hidden;margin-top:24px;}
+.servicio-full-inner{display:grid;grid-template-columns:1fr;gap:0;}
+@media(min-width:768px){.servicio-full-inner{grid-template-columns:1fr 1fr;}}
+.sf-left{padding:32px;border-bottom:1px solid var(--gris-b);}
+@media(min-width:768px){.sf-left{border-bottom:none;border-right:1px solid var(--gris-b);}}
+.sf-right{padding:32px;}
+.sf-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--azul);margin-bottom:8px;}
+.sf-text{font-size:14px;color:var(--gris-t);line-height:1.65;}
+
+/* ===================== PROCESO ===================== */
+.proceso{padding:80px 0;}
+.proceso-steps{display:grid;grid-template-columns:1fr;gap:0;margin-top:48px;position:relative;}
+@media(min-width:768px){.proceso-steps{grid-template-columns:repeat(4,1fr);}}
+.paso{text-align:center;padding:0 16px;position:relative;}
+.paso::after{content:'→';position:absolute;right:-12px;top:28px;font-size:20px;color:var(--gris-b);display:none;}
+@media(min-width:768px){.paso::after{display:block;}}
+.paso:last-child::after{display:none;}
+.paso-num{width:56px;height:56px;border-radius:50%;background:var(--azul);color:var(--blanco);font-family:'Syne',sans-serif;font-size:20px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+.paso-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--azul);margin-bottom:8px;}
+.paso-text{font-size:13px;color:var(--gris-t);line-height:1.6;}
+.paso-tiempo{display:inline-block;margin-top:8px;font-size:11px;font-weight:600;color:var(--naranja);background:var(--naranja-l);padding:3px 10px;border-radius:99px;}
+
+/* ===================== TESTIMONIOS ===================== */
+.testimonios{padding:80px 0;background:linear-gradient(180deg,var(--azul) 0%,#00234A 100%);position:relative;}
+.testimonios::before{content:'';position:absolute;top:-2px;left:0;right:0;height:60px;background:var(--blanco);clip-path:ellipse(55% 100% at 50% 0%);}
+.testimonios::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:60px;background:var(--gris-f);clip-path:ellipse(55% 100% at 50% 100%);}
+.testimonios .section-title{color:var(--blanco);}
+.testimonios .section-sub{color:rgba(255,255,255,.70);}
+.test-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:48px;}
+@media(min-width:640px){.test-grid{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:1024px){.test-grid{grid-template-columns:repeat(3,1fr);}}
+.test-card{background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:24px;}
+.test-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;}
+.test-avatar{width:44px;height:44px;border-radius:50%;background:var(--naranja);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--blanco);flex-shrink:0;}
+.test-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--blanco);}
+.test-loc{font-size:12px;color:rgba(255,255,255,.55);margin-top:2px;}
+.test-tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;background:rgba(232,96,10,.25);color:var(--naranja);margin-top:4px;}
+.test-result{font-size:14px;color:rgba(255,255,255,.85);line-height:1.65;}
+.test-result strong{color:var(--naranja);}
+.test-stars{color:var(--naranja);font-size:14px;margin-bottom:8px;}
+
+/* ===================== LABORATORIO ===================== */
+.lab{padding:80px 0;background:var(--gris-f);}
+.lab-inner{display:grid;grid-template-columns:1fr;gap:40px;align-items:center;}
+@media(min-width:768px){.lab-inner{grid-template-columns:1fr 1fr;}}
+.lab-visual{background:var(--azul);border-radius:24px;padding:40px;text-align:center;position:relative;overflow:hidden;}
+.lab-visual::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:rgba(0,119,204,.3);border-radius:50%;}
+.lab-icon{font-size:80px;margin-bottom:16px;position:relative;z-index:1;}
+.lab-visual-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--blanco);margin-bottom:8px;position:relative;z-index:1;}
+.lab-visual-text{font-size:14px;color:rgba(255,255,255,.70);line-height:1.65;position:relative;z-index:1;}
+.lab-features{display:flex;flex-direction:column;gap:16px;margin-top:24px;}
+.lab-feat{display:flex;align-items:flex-start;gap:14px;padding:18px;background:var(--blanco);border-radius:var(--r-sm);border:1px solid var(--gris-b);}
+.lab-feat-icon{font-size:24px;flex-shrink:0;}
+.lab-feat-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--azul);margin-bottom:3px;}
+.lab-feat-text{font-size:13px;color:var(--gris-t);line-height:1.55;}
+
+/* ===================== COBERTURA ===================== */
+.cobertura{padding:80px 0;}
+.cob-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:40px;}
+@media(min-width:640px){.cob-grid{grid-template-columns:repeat(3,1fr);}}
+.cob-card{border-radius:var(--r);padding:28px 24px;text-align:center;border:1px solid var(--gris-b);}
+.cob-card.primary{background:var(--azul);border-color:var(--azul);}
+.cob-card.secondary{background:var(--blanco);}
+.cob-card.tertiary{background:var(--naranja-l);border-color:var(--naranja);}
+.cob-icon{font-size:36px;margin-bottom:14px;}
+.cob-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;}
+.cob-card.primary .cob-title{color:var(--blanco);}
+.cob-card.secondary .cob-title{color:var(--azul);}
+.cob-card.tertiary .cob-title{color:var(--naranja);}
+.cob-text{font-size:13px;line-height:1.65;}
+.cob-card.primary .cob-text{color:rgba(255,255,255,.75);}
+.cob-card.secondary .cob-text{color:var(--gris-t);}
+.cob-card.tertiary .cob-text{color:var(--naranja);}
+
+/* ===================== PAGO ===================== */
+.pago{padding:60px 0;background:var(--azul-l);}
+.pago-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px;}
+.pago-label{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--azul);}
+.pago-methods{display:flex;flex-wrap:wrap;gap:10px;}
+.pago-method{background:var(--blanco);border:1px solid var(--gris-b);border-radius:var(--r-sm);padding:8px 16px;font-size:13px;font-weight:600;color:var(--azul);display:flex;align-items:center;gap:6px;}
+
+/* ===================== FAQ ===================== */
+.faq{padding:80px 0;background:var(--gris-f);}
+.faq-list{max-width:720px;margin:40px auto 0;display:flex;flex-direction:column;gap:12px;}
+.faq-item{background:var(--blanco);border-radius:var(--r-sm);border:1px solid var(--gris-b);overflow:hidden;}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;cursor:pointer;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--azul);gap:12px;}
+.faq-q:hover{background:var(--azul-l);}
+.faq-arrow{font-size:18px;transition:transform .25s;flex-shrink:0;}
+.faq-item.open .faq-arrow{transform:rotate(180deg);}
+.faq-a{padding:0 24px;max-height:0;overflow:hidden;transition:all .3s;font-size:14px;color:var(--gris-t);line-height:1.7;}
+.faq-item.open .faq-a{padding:0 24px 20px;max-height:300px;}
+
+/* ===================== CTA FINAL ===================== */
+.cta-final{padding:100px 0;background:linear-gradient(135deg,var(--azul) 0%,#00234A 100%);text-align:center;position:relative;overflow:hidden;}
+.cta-final::before{content:'🍋';position:absolute;font-size:300px;opacity:.03;top:50%;left:50%;transform:translate(-50%,-50%);}
+.cta-final-title{font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:800;color:var(--blanco);line-height:1.15;margin-bottom:16px;position:relative;}
+.cta-final-sub{font-size:17px;color:rgba(255,255,255,.75);margin-bottom:40px;max-width:560px;margin-left:auto;margin-right:auto;position:relative;}
+.cta-final-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;position:relative;}
+.cta-nota{margin-top:24px;font-size:13px;color:rgba(255,255,255,.55);position:relative;}
+
+/* ===================== FORTALEZA ===================== */
+.fortaleza{padding:70px 0;background:var(--blanco);}
+.fortaleza-inner{display:grid;grid-template-columns:1fr;gap:32px;align-items:center;}
+@media(min-width:768px){.fortaleza-inner{grid-template-columns:1fr 1fr;}}
+.fort-text .section-title{font-size:clamp(24px,3vw,34px);}
+.fort-link{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-weight:600;color:var(--naranja);text-decoration:none;font-size:15px;}
+.fort-link:hover{gap:12px;}
+.fort-visual{background:linear-gradient(135deg,var(--azul-l),var(--naranja-l));border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:12px;}
+.fort-item{background:var(--blanco);border-radius:var(--r-sm);padding:14px 18px;display:flex;align-items:center;gap:12px;font-size:14px;color:var(--azul);font-weight:500;border:1px solid var(--gris-b);}
+
+/* ===================== FOOTER ===================== */
+.footer{background:var(--negro);padding:48px 0 24px;}
+.footer-inner{display:grid;grid-template-columns:1fr;gap:40px;}
+@media(min-width:768px){.footer-inner{grid-template-columns:2fr 1fr 1fr;}}
+.footer-brand .nav-logo-text{font-size:22px;}
+.footer-desc{font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;margin-top:12px;max-width:280px;}
+.footer-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--blanco);margin-bottom:16px;text-transform:uppercase;letter-spacing:.08em;}
+.footer-links{display:flex;flex-direction:column;gap:10px;}
+.footer-link{font-size:14px;color:rgba(255,255,255,.55);text-decoration:none;transition:color .2s;}
+.footer-link:hover{color:var(--naranja);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:40px;padding-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:rgba(255,255,255,.35);}
+
+/* ===================== STICKY CTA MOBILE ===================== */
+.sticky-wa{position:fixed;bottom:20px;right:20px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.sticky-wa-btn{background:#25D366;color:var(--blanco);border:none;border-radius:50%;width:58px;height:58px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 20px rgba(37,211,102,.5);font-size:26px;text-decoration:none;transition:all .2s;animation:pulse-wa 2.5s infinite;}
+.sticky-wa-btn:hover{transform:scale(1.1);}
+.sticky-wa-label{background:var(--negro);color:var(--blanco);font-size:12px;font-weight:600;padding:6px 12px;border-radius:99px;opacity:0;transform:translateX(10px);transition:all .2s;}
+.sticky-wa:hover .sticky-wa-label{opacity:1;transform:translateX(0);}
+@keyframes pulse-wa{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.5);}50%{box-shadow:0 4px 30px rgba(37,211,102,.8);}}
+
+/* ===================== ANIMATIONS ===================== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ===================== RESPONSIVE ===================== */
+@media(max-width:640px){
+  .hero{padding:90px 0 80px;}
+  .btn-lg{font-size:16px;padding:16px 28px;}
+  .servicio-header,.servicio-body,.sf-left,.sf-right{padding:20px;}
+  .proceso-steps{gap:32px;}
+  .paso::after{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="nav-logo-text">COMPU<span>CARVI</span></span>
+      </a>
+      <a href="https://wa.me/584140305138?text=Hola%20Luis%20Carlos%2C%20necesito%20ayuda%20con%20recuperaci%C3%B3n%20de%20datos" target="_blank" class="btn btn-primary nav-cta">
+        📱 Escribir por WhatsApp
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">
+          <span class="tag" style="background:rgba(232,96,10,.2);color:#FFA070;">🔒 Laboratorio certificado · Venezuela</span>
+        </div>
+        <h1 class="hero-title">
+          ¿Perdiste tus datos?<br>
+          <span>Aún hay una segunda oportunidad.</span>
+        </h1>
+        <p class="hero-sub">
+          Recuperación profesional de datos en Venezuela. Diagnóstico en 24 a 48 horas. Más de 1.000 unidades recuperadas en 36 años. Disco duro, SSD, NAS, RAID, celulares y más.
+        </p>
+        <div class="hero-ctas">
+          <a href="https://wa.me/584140305138?text=Hola%20Luis%20Carlos%2C%20necesito%20ayuda%20con%20recuperaci%C3%B3n%20de%20datos" target="_blank" class="btn btn-wa btn-lg">
+            📱 Cuéntame tu caso
+          </a>
+          <a href="#servicios" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,.4);">
+            Ver servicios
+          </a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><div class="trust-icon">⚡</div>Respuesta inmediata</div>
+          <div class="trust-item"><div class="trust-icon">🔬</div>Diagnóstico técnico</div>
+          <div class="trust-item"><div class="trust-icon">🔐</div>100% confidencial</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-avatar">
+            <span class="hero-avatar-placeholder">👨‍💻</span>
+          </div>
+          <div class="hero-name">Luis Carlos Villegas C.</div>
+          <div class="hero-role">Informático · CEO Compucarvi · Caracas, Venezuela</div>
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="stat-num">36</div>
+              <div class="stat-label">años de experiencia</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">+1K</div>
+              <div class="stat-label">unidades recuperadas</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">75%</div>
+              <div class="stat-label">tasa de éxito</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">24h</div>
+              <div class="stat-label">diagnóstico expreso</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trustbar">
+  <div class="container">
+    <div class="trustbar-inner">
+      <div class="tbar-item"><span class="tbar-dot"></span>Discos duros HDD y SSD</div>
+      <div class="tbar-item"><span class="tbar-dot"></span>Arreglos RAID y NAS</div>
+      <div class="tbar-item"><span class="tbar-dot"></span>Recuperación de ransomware</div>
+      <div class="tbar-item"><span class="tbar-dot"></span>Formateo accidental</div>
+      <div class="tbar-item"><span class="tbar-dot"></span>Daño físico y mecánico</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEMA -->
+<section class="problema">
+  <div class="container">
+    <div class="reveal">
+      <span class="tag tag-naranja">¿Te pasó alguno de estos?</span>
+      <h2 class="section-title" style="margin-top:12px;">Los 3 casos que más atendemos</h2>
+      <p class="section-sub">No importa cómo ocurrió. Lo que importa es actuar antes de que el daño sea irreversible.</p>
+    </div>
+    <div class="problema-grid">
+      <div class="problema-card reveal">
+        <div class="problema-icon">💥</div>
+        <div class="problema-title">Fallo físico o mecánico</div>
+        <p class="problema-text">El disco no arranca. Hace ruidos extraños. Cayó al suelo. El computador no lo reconoce. Cada minuto que pasa puede empeorar el daño.</p>
+      </div>
+      <div class="problema-card reveal">
+        <div class="problema-icon">🗑️</div>
+        <div class="problema-title">Error humano</div>
+        <p class="problema-text">Formateaste sin querer. Borraste archivos importantes. Sobreescribiste una carpeta. Fotos, documentos, años de trabajo en riesgo.</p>
+      </div>
+      <div class="problema-card reveal">
+        <div class="problema-icon">🦠</div>
+        <div class="problema-title">Ransomware o malware</div>
+        <p class="problema-text">Tus archivos aparecen cifrados. Te piden un rescate. Un virus destruyó la estructura del sistema. No pagues nada sin consultarnos primero.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios" id="servicios">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto;">
+      <span class="tag tag-azul">Servicios y precios</span>
+      <h2 class="section-title" style="margin-top:12px;">El embudo de recuperación</h2>
+      <p class="section-sub">Primero diagnosticamos. Luego recuperamos. Siempre con transparencia técnica y precio en dólares pagadero en bolívares a tasa Binance del día.</p>
+    </div>
+
+    <div class="servicios-grid">
+      <!-- Diagnóstico Normal -->
+      <div class="servicio-card reveal">
+        <div class="servicio-header">
+          <div class="servicio-badge"><span class="tag tag-azul">Paso 1</span></div>
+          <div class="servicio-title">Diagnóstico Normal</div>
+          <div class="servicio-sub">Evaluación técnica completa con informe escrito</div>
+        </div>
+        <div class="servicio-body">
+          <div class="servicio-precio">
+            <span class="precio-desde">desde</span>
+            <span class="precio-num">$55</span>
+            <span class="precio-usd">USD</span>
+          </div>
+          <div class="precio-nota">💱 Pago en Bs. a tasa Binance del día · USDT · PayPal · Transferencia</div>
+          <div class="servicio-tiempo">⏱️ Resultado en 48 horas hábiles</div>
+          <ul class="servicio-lista">
+            <li><span class="li-check">✓</span>Evaluación del estado físico y lógico del dispositivo</li>
+            <li><span class="li-check">✓</span>Diagnóstico con herramientas especializadas</li>
+            <li><span class="li-check">✓</span>Informe técnico escrito del estado y posibilidades</li>
+            <li><span class="li-check">✓</span>Estimación de costo de recuperación si aplica</li>
+          </ul>
+          <a href="https://wa.me/584140305138?text=Hola%2C%20me%20interesa%20el%20diagn%C3%B3stico%20normal" target="_blank" class="btn btn-outline" style="width:100%;">Solicitar diagnóstico</a>
+        </div>
+      </div>
+
+      <!-- Diagnóstico Expreso -->
+      <div class="servicio-card featured reveal">
+        <div class="servicio-header">
+          <div class="servicio-badge"><span class="tag tag-naranja">⚡ Más solicitado</span></div>
+          <div class="servicio-title">Diagnóstico Expreso</div>
+          <div class="servicio-sub">Cuando cada hora importa — prioridad máxima</div>
+        </div>
+        <div class="servicio-body">
+          <div class="servicio-precio">
+            <span class="precio-desde">desde</span>
+            <span class="precio-num">$75</span>
+            <span class="precio-usd">USD</span>
+          </div>
+          <div class="precio-nota">💱 Pago en Bs. a tasa Binance del día · USDT · PayPal · Transferencia</div>
+          <div class="servicio-tiempo" style="background:var(--naranja-l);color:var(--naranja);">⚡ Resultado en 24 horas — incluye fines de semana</div>
+          <ul class="servicio-lista">
+            <li><span class="li-check">✓</span>Todo lo del diagnóstico normal</li>
+            <li><span class="li-check">✓</span>Atención prioritaria sobre otros casos activos</li>
+            <li><span class="li-check">✓</span>Comunicación directa durante el proceso</li>
+            <li><span class="li-check">✓</span>Disponible sábados y domingos</li>
+          </ul>
+          <a href="https://wa.me/584140305138?text=Hola%2C%20necesito%20el%20diagn%C3%B3stico%20expreso%20urgente" target="_blank" class="btn btn-primary" style="width:100%;">Quiero atención urgente</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recuperación -->
+    <div class="servicio-full reveal">
+      <div class="servicio-full-inner">
+        <div class="sf-left">
+          <span class="tag tag-verde" style="margin-bottom:16px;">Paso 2 · Si hay recuperación posible</span>
+          <div class="sf-title">Recuperación de Datos</div>
+          <p class="sf-text" style="margin-bottom:16px;">Una vez completado el diagnóstico, si existe posibilidad de recuperación se emite una cotización específica según el tipo de falla, la capacidad del dispositivo y la complejidad del proceso.</p>
+          <p class="sf-text" style="margin-bottom:16px;"><strong style="color:var(--azul);">El costo del diagnóstico se descuenta del total de la recuperación.</strong> Pagas por lo que recibes, no por el tiempo que trabajo.</p>
+          <div style="background:var(--verde-l);border-radius:var(--r-sm);padding:14px 18px;font-size:13px;color:var(--verde);font-weight:500;">
+            ✔ El diagnóstico siempre se cobra — con o sin recuperación. Así garantizamos transparencia y cubrimos el trabajo técnico real realizado.
+          </div>
+        </div>
+        <div class="sf-right">
+          <div class="sf-title">Tiempo de recuperación</div>
+          <p class="sf-text" style="margin-bottom:20px;">Depende del tipo de falla y la capacidad del dispositivo. El proceso incluye recuperación, backup en nuestro servidor seguro y transferencia al dispositivo del cliente.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--gris-f);border-radius:var(--r-sm);font-size:14px;">
+              <span style="color:var(--gris-t);">Casos simples</span>
+              <strong style="color:var(--azul);">24 – 48 horas</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--gris-f);border-radius:var(--r-sm);font-size:14px;">
+              <span style="color:var(--gris-t);">Casos complejos</span>
+              <strong style="color:var(--azul);">2 – 4 días</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--gris-f);border-radius:var(--r-sm);font-size:14px;">
+              <span style="color:var(--gris-t);">RAID / NAS / Servidores</span>
+              <strong style="color:var(--naranja);">Cotización especial</strong>
+            </div>
+          </div>
+          <a href="https://wa.me/584140305138?text=Hola%2C%20quiero%20consultar%20sobre%20recuperaci%C3%B3n%20de%20datos" target="_blank" class="btn btn-wa" style="width:100%;margin-top:20px;">📱 Consultar mi caso</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="proceso">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto;">
+      <span class="tag tag-azul">¿Cómo funciona?</span>
+      <h2 class="section-title" style="margin-top:12px;">4 pasos simples</h2>
+    </div>
+    <div class="proceso-steps reveal">
+      <div class="paso">
+        <div class="paso-num">1</div>
+        <div class="paso-title">Me escribes</div>
+        <p class="paso-text">Por WhatsApp. Describes el problema y el tipo de dispositivo. Respondo de inmediato.</p>
+        <span class="paso-tiempo">Inmediato</span>
+      </div>
+      <div class="paso">
+        <div class="paso-num">2</div>
+        <div class="paso-title">Envías el dispositivo</div>
+        <p class="paso-text">Presencial en Caracas o por mensajería desde el interior del país e internacional.</p>
+        <span class="paso-tiempo">Según mensajería</span>
+      </div>
+      <div class="paso">
+        <div class="paso-num">3</div>
+        <div class="paso-title">Diagnóstico técnico</div>
+        <p class="paso-text">Evaluamos en laboratorio y te enviamos un informe técnico completo con resultado y opciones.</p>
+        <span class="paso-tiempo">24 – 48 horas</span>
+      </div>
+      <div class="paso">
+        <div class="paso-num">4</div>
+        <div class="paso-title">Recuperación y entrega</div>
+        <p class="paso-text">Si hay recuperación posible, ejecutamos y entregamos tus datos con backup verificado.</p>
+        <span class="paso-tiempo">1 – 4 días</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonios">
+  <div class="container" style="position:relative;z-index:1;padding-top:20px;">
+    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto;">
+      <span class="tag" style="background:rgba(232,96,10,.2);color:#FFA070;">Casos reales resueltos</span>
+      <h2 class="section-title" style="margin-top:12px;">Lo que dicen nuestros clientes</h2>
+      <p class="section-sub">Más de 1.000 unidades recuperadas en 36 años. Estos son algunos casos recientes.</p>
+    </div>
+    <div class="test-grid">
+
+      <div class="test-card reveal">
+        <div class="test-header">
+          <div class="test-avatar">CM</div>
+          <div>
+            <div class="test-name">Carlos M.</div>
+            <div class="test-loc">📍 Caracas</div>
+            <span class="test-tag">RAID 5 · Empresarial</span>
+          </div>
+        </div>
+        <div class="test-stars">★★★★★</div>
+        <p class="test-result">Fallo simultáneo en dos unidades de un RAID 5. <strong>Recuperación completa de 14 TB</strong> de registros contables, evitando sanciones del SENIAT y paralización operativa.</p>
+      </div>
+
+      <div class="test-card reveal">
+        <div class="test-header">
+          <div class="test-avatar">ER</div>
+          <div>
+            <div class="test-name">Dra. Elena R.</div>
+            <div class="test-loc">📍 Valencia</div>
+            <span class="test-tag">NAS 8 bahías · Médico</span>
+          </div>
+        </div>
+        <div class="test-stars">★★★★★</div>
+        <p class="test-result">NAS de 8 bahías dañado por sobretensión. <strong>Restauración del 100% de expedientes clínicos</strong> con certificación de integridad y cumplimiento de normativas sanitarias.</p>
+      </div>
+
+      <div class="test-card reveal">
+        <div class="test-header">
+          <div class="test-avatar">JP</div>
+          <div>
+            <div class="test-name">Javier P.</div>
+            <div class="test-loc">📍 Maracaibo</div>
+            <span class="test-tag">SSD NVMe · Producción</span>
+          </div>
+        </div>
+        <div class="test-stars">★★★★★</div>
+        <p class="test-result">SSD NVMe con bloqueo de firmware. <strong>Extracción de 3.2 TB de material audiovisual</strong> conservando metadatos de cámara y estructura de proyectos.</p>
+      </div>
+
+      <div class="test-card reveal">
+        <div class="test-header">
+          <div class="test-avatar">AG</div>
+          <div>
+            <div class="test-name">Prof. Andrés G.</div>
+            <div class="test-loc">📍 Mérida</div>
+            <span class="test-tag">HDD externo · Académico</span>
+          </div>
+        </div>
+        <div class="test-stars">★★★★★</div>
+        <p class="test-result">Disco externo con cabezal rayado tras caída. <strong>Recuperación de 9 años de investigación doctoral</strong> con informe técnico para validación académica.</p>
+      </div>
+
+      <div class="test-card reveal">
+        <div class="test-header">
+          <div class="test-avatar">EL</div>
+          <div>
+            <div class="test-name">Empresa Logística C.A.</div>
+            <div class="test-loc">📍 Puerto La Cruz</div>
+            <span class="test-tag">Ransomware · Corporativo</span>
+          </div>
+        </div>
+        <div class="test-stars">★★★★★</div>
+        <p class="test-result">Ataque de ransomware en servidor compartido. <strong>Cero pérdida de información operativa</strong> y reducción del 70% en superficie de ataque con plan de continuidad documentado.</p>
+      </div>
+
+      <div class="test-card reveal">
+        <div class="test-header">
+          <div class="test-avatar">RA</div>
+          <div>
+            <div class="test-name">Rivas & Asociados</div>
+            <div class="test-loc">📍 Barquisimeto</div>
+            <span class="test-tag">Corrupción lógica · Legal</span>
+          </div>
+        </div>
+        <div class="test-stars">★★★★★</div>
+        <p class="test-result">Eliminación accidental de sistema de gestión documental. <strong>Restitución íntegra de 1.8 TB de casos activos</strong> con protocolo validado para uso ante tribunales.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LABORATORIO -->
+<section class="lab">
+  <div class="container">
+    <div class="lab-inner">
+      <div class="lab-visual reveal">
+        <div class="lab-icon">🔬</div>
+        <div class="lab-visual-title">Laboratorio de acceso restringido</div>
+        <p class="lab-visual-text">Nuestro laboratorio opera en ambiente controlado. No recibimos visitas al público — no por exclusividad, sino porque la recuperación de datos exige condiciones técnicas precisas y confidencialidad absoluta. Tu dispositivo llega a nuestras manos, y solo a las nuestras.</p>
+      </div>
+      <div class="reveal">
+        <span class="tag tag-azul">¿Por qué somos diferentes?</span>
+        <h2 class="section-title" style="margin-top:12px;font-size:clamp(24px,3vw,34px);">Protocolos propios. Resultados reales.</h2>
+        <div class="lab-features">
+          <div class="lab-feat">
+            <span class="lab-feat-icon">🛠️</span>
+            <div>
+              <div class="lab-feat-title">Herramientas especializadas</div>
+              <p class="lab-feat-text">Trabajamos con PC-3000, clonación sectorial y herramientas forenses que no están disponibles en el mercado convencional.</p>
+            </div>
+          </div>
+          <div class="lab-feat">
+            <span class="lab-feat-icon">📋</span>
+            <div>
+              <div class="lab-feat-title">Protocolo propio de recuperación</div>
+              <p class="lab-feat-text">36 años de experiencia nos permitieron desarrollar métodos propios para casos que otras empresas rechazan.</p>
+            </div>
+          </div>
+          <div class="lab-feat">
+            <span class="lab-feat-icon">☁️</span>
+            <div>
+              <div class="lab-feat-title">Backup en servidor seguro</div>
+              <p class="lab-feat-text">Los datos recuperados se guardan en nuestro servidor antes de ser entregados al cliente. Doble verificación de integridad.</p>
+            </div>
+          </div>
+          <div class="lab-feat">
+            <span class="lab-feat-icon">📄</span>
+            <div>
+              <div class="lab-feat-title">Informe técnico incluido</div>
+              <p class="lab-feat-text">Cada diagnóstico incluye un informe escrito con el estado del dispositivo, tipo de falla y recomendaciones. Válido para uso corporativo y legal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COBERTURA -->
+<section class="cobertura">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:540px;margin:0 auto;">
+      <span class="tag tag-azul">Cobertura</span>
+      <h2 class="section-title" style="margin-top:12px;">Te atendemos donde estés</h2>
+    </div>
+    <div class="cob-grid">
+      <div class="cob-card primary reveal">
+        <div class="cob-icon">🏙️</div>
+        <div class="cob-title">Caracas</div>
+        <p class="cob-text">Atención presencial en Caracas. Coordinamos punto de entrega seguro y conveniente para ambas partes.</p>
+      </div>
+      <div class="cob-card secondary reveal">
+        <div class="cob-icon">📦</div>
+        <div class="cob-title">Interior del país</div>
+        <p class="cob-text">Envía tu dispositivo desde cualquier ciudad de Venezuela por mensajería. Coordinamos el proceso completo por WhatsApp.</p>
+      </div>
+      <div class="cob-card tertiary reveal">
+        <div class="cob-icon">✈️</div>
+        <div class="cob-title">Internacional</div>
+        <p class="cob-text">Recibimos dispositivos desde el exterior. También ofrecemos recuperación remota para ciertos tipos de falla lógica.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGO -->
+<div class="pago">
+  <div class="container">
+    <div class="pago-inner">
+      <span class="pago-label">💱 Métodos de pago:</span>
+      <div class="pago-methods">
+        <span class="pago-method">🇻🇪 Bs. a tasa Binance</span>
+        <span class="pago-method">🔶 USDT Binance</span>
+        <span class="pago-method">🅿️ PayPal</span>
+        <span class="pago-method">🏦 Transferencia bancaria</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <span class="tag tag-azul">Preguntas frecuentes</span>
+      <h2 class="section-title" style="margin-top:12px;">Lo que todos preguntan primero</h2>
+    </div>
+    <div class="faq-list reveal">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Funciona para cualquier tipo de disco o dispositivo?
+          <span class="faq-arrow">⌄</span>
+        </div>
+        <div class="faq-a">Trabajamos con discos duros mecánicos (HDD), unidades de estado sólido (SSD y NVMe), arreglos RAID, servidores NAS, memorias USB, tarjetas SD y discos externos. Si tienes duda sobre tu dispositivo específico, escríbenos y te confirmamos.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué pasa si no pueden recuperar mis datos?
+          <span class="faq-arrow">⌄</span>
+        </div>
+        <div class="faq-a">El diagnóstico se cobra siempre — refleja el trabajo técnico real de evaluar tu dispositivo. Si la recuperación no es viable, recibes un informe técnico completo explicando el estado del medio y las razones. Nunca cobramos recuperación que no pudimos hacer.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Cuál es su tasa de éxito real?
+          <span class="faq-arrow">⌄</span>
+        </div>
+        <div class="faq-a">Nuestra tasa de recuperación efectiva está entre el 60% y el 75% de los casos con diagnóstico viable, en línea con los estándares internacionales de laboratorios especializados. El resultado depende del estado físico del dispositivo, el tipo de falla y si hubo manipulaciones previas. Por eso recomendamos no intentar reparaciones caseras antes de consultarnos.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Puedo enviar mi dispositivo desde el interior del país?
+          <span class="faq-arrow">⌄</span>
+        </div>
+        <div class="faq-a">Sí. Coordinamos el envío por mensajería desde cualquier ciudad de Venezuela. Te damos instrucciones de empaque seguro para proteger el dispositivo durante el transporte. Desde el exterior también recibimos envíos internacionales.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Por qué el laboratorio no tiene acceso al público?
+          <span class="faq-arrow">⌄</span>
+        </div>
+        <div class="faq-a">La recuperación de datos requiere ambiente controlado, silencio electromagnético y confidencialidad total. No es exclusividad — es protocolo técnico. Tus datos son tratados con la misma seriedad que un expediente médico. El acceso restringido garantiza que ninguna persona ajena al proceso tenga contacto con tu información.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿En qué moneda cobran y a qué tasa?
+          <span class="faq-arrow">⌄</span>
+        </div>
+        <div class="faq-a">Los servicios se cotizan en dólares americanos. Al momento del pago calculamos el equivalente en bolívares a la tasa Binance P2P del día — la referencia más fiel del mercado venezolano real. También aceptamos USDT directamente en Binance, PayPal y transferencia bancaria.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FORTALEZA DIGITAL -->
+<section class="fortaleza">
+  <div class="container">
+    <div class="fortaleza-inner">
+      <div class="fort-text reveal">
+        <span class="tag tag-azul">Paso 3 del embudo</span>
+        <h2 class="section-title" style="margin-top:12px;font-size:clamp(24px,3vw,36px);">¿Ya recuperaste tus datos?<br>Ahora protégelos.</h2>
+        <p class="section-sub">Fortaleza Digital es nuestro newsletter gratuito sobre ciberseguridad en lenguaje humano. Sin tecnicismos. Para que esto no vuelva a pasarte.</p>
+        <a href="https://www.linkedin.com/newsletters/fortaleza-digital-7201764669852659712/" target="_blank" class="fort-link">Suscribirme gratis a Fortaleza Digital →</a>
+      </div>
+      <div class="fort-visual reveal">
+        <div class="fort-item">📧 Alertas de seguridad semanales</div>
+        <div class="fort-item">🛡️ Cómo proteger tu backup correctamente</div>
+        <div class="fort-item">🔐 Contraseñas, phishing y fraudes</div>
+        <div class="fort-item">💡 Tips prácticos para no técnicos</div>
+        <div class="fort-item">🆓 Completamente gratuito</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="container">
+    <h2 class="cta-final-title">¿Tienes un disco duro,<br>SSD o dispositivo dañado?</h2>
+    <p class="cta-final-sub">Escríbeme ahora por WhatsApp. Respondo de inmediato. Cuéntame qué pasó y te digo si puedo ayudarte — sin compromiso.</p>
+    <div class="cta-final-btns">
+      <a href="https://wa.me/584140305138?text=Hola%20Luis%20Carlos%2C%20necesito%20ayuda%20con%20recuperaci%C3%B3n%20de%20datos" target="_blank" class="btn btn-wa btn-lg">
+        📱 Escribir por WhatsApp ahora
+      </a>
+      <a href="https://linktr.ee/compucarvi" target="_blank" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,.4);">
+        Ver todos mis servicios
+      </a>
+    </div>
+    <p class="cta-nota">📍 Laboratorio en Caracas · Servicio nacional e internacional · Respuesta inmediata</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="nav-logo-text" style="font-size:22px;">COMPU<span>CARVI</span></span>
+        <p class="footer-desc">Educación, tecnología y soporte remoto al alcance de todos. Laboratorio de recuperación de datos en Venezuela desde 1988.</p>
+      </div>
+      <div>
+        <p class="footer-title">Servicios</p>
+        <div class="footer-links">
+          <a href="#servicios" class="footer-link">Diagnóstico Normal</a>
+          <a href="#servicios" class="footer-link">Diagnóstico Expreso</a>
+          <a href="#servicios" class="footer-link">Recuperación de datos</a>
+          <a href="#servicios" class="footer-link">Soporte remoto</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-title">Contacto</p>
+        <div class="footer-links">
+          <a href="https://wa.me/584140305138" target="_blank" class="footer-link">📱 WhatsApp +58 414 030 5138</a>
+          <a href="https://linktr.ee/compucarvi" target="_blank" class="footer-link">🔗 linktr.ee/compucarvi</a>
+          <a href="https://www.linkedin.com/in/compucarvi/" target="_blank" class="footer-link">💼 LinkedIn</a>
+          <a href="https://www.linkedin.com/newsletters/fortaleza-digital-7201764669852659712/" target="_blank" class="footer-link">📧 Newsletter Fortaleza Digital</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Compucarvi · Luis Carlos Villegas C. · Venezuela</span>
+      <span>Hecho con 🍋 y 36 años de experiencia</span>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY WHATSAPP -->
+<div class="sticky-wa">
+  <span class="sticky-wa-label">WhatsApp</span>
+  <a href="https://wa.me/584140305138?text=Hola%20Luis%20Carlos%2C%20necesito%20ayuda%20con%20recuperaci%C3%B3n%20de%20datos" target="_blank" class="sticky-wa-btn" aria-label="Escribir por WhatsApp">📱</a>
+</div>
+
+<script>
+// NAV scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+
+// FAQ
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>
